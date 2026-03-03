@@ -1,1 +1,18 @@
+/* Estilo para a lista no navegador */
+.lista-convidados {
+    font-family: Arial, sans-serif;
+    list-style: none;
+    text-transform: uppercase; /* Garante a visualização em maiúsculas */
+    color: #2c3e50;
+}
+
+.item-convidado {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.destaque-a {
+    font-weight: bold;
+    color: #e74c3c; /* Cor diferente para quem começa com A */
+}
 
