@@ -2,42 +2,42 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Gerenciador de Convidados Pro</title>
+    <title>Sistema de Convidados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Painel Dinâmico de Convidados</h1>
+        <h1>Painel de Convidados</h1>
         
-        <!-- Entrada de Dados -->
-        <div class="input-group">
-            <input type="text" id="novo-nome" placeholder="Digite o nome do convidado...">
-            <button onclick="adicionarConvidado()" class="btn-add">Adicionar</button>
+        <div class="input-area">
+            <input type="text" id="inputNome" placeholder="Novo nome...">
+            <button id="btnAdd">ADICIONAR</button>
         </div>
 
-        <!-- Botoes de Controle -->
-        <div class="botoes">
-            <button onclick="renderizar(listaOriginal)" class="btn-primary">Ver Todos</button>
-            <button onclick="filtrarA()" class="btn-filter">Filtrar "A"</button>
-            <button onclick="limparTudo()" class="btn-reset">Limpar Lista</button>
+        <div class="acoes">
+            <button id="btnFiltrar">FILTRAR LETRA A</button>
+            <button id="btnVerTodos">VER TODOS</button>
         </div>
 
+        <!-- Tabela 1: Nomes -->
         <table>
-            <caption>Tabela 1: Lista de Nomes (Processados)</caption>
-            <thead><tr><th>Convidado</th></tr></thead>
-            <tbody id="tabela-nomes"></tbody>
+            <caption>Tabela 1: Lista de Nomes (MAIÚSCULAS)</caption>
+            <thead><tr><th>NOME</th></tr></thead>
+            <tbody id="corpoNomes"></tbody>
         </table>
 
+        <!-- Tabela 2: Contagem -->
         <table>
             <caption>Tabela 2: Estatística</caption>
             <thead><tr><th>Critério</th><th>Total</th></tr></thead>
-            <tbody><tr><td>Começam com "A"</td><td id="total-a">0</td></tr></tbody>
+            <tbody><tr><td>Começam com "A"</td><td id="totalA">0</td></tr></tbody>
         </table>
 
+        <!-- Tabela 3: Logs -->
         <table>
-            <caption>Tabela 3: Histórico</caption>
-            <thead><tr><th>Ação</th><th>Status</th></tr></thead>
-            <tbody><tr id="log-linha"><td>Sistema Pronto</td><td>OK</td></tr></tbody>
+            <caption>Tabela 3: Sistema</caption>
+            <thead><tr><th>Última Ação</th><th>Status</th></tr></thead>
+            <tbody><tr><td id="logAcao">-</td><td id="logStatus">Aguardando</td></tr></tbody>
         </table>
     </div>
     <script src="script.js"></script>
