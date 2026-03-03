@@ -1,23 +1,41 @@
-const convidados = ["Ana", "Bruno", "Amanda", "Carlos", "Alice", "David", "Arthur"];
+let convidados = ["Ana", "Bruno", "Amanda", "Carlos", "Alice", "David", "Arthur"];
+
 const corpoTabela = document.getElementById('tabela-nomes');
 const campoTotal = document.getElementById('total-a');
+const logAcao = document.getElementById('log-acao');
+const logStatus = document.getElementById('log-status');
 
-let contadorA = 0;
+function atualizarTabelas(lista) {
+    corpoTabela.innerHTML = "";
+    let contadorA = 0;
 
-// Loop para imprimir nomes e realizar a contagem
-convidados.forEach(nome => {
-    const maiusculo = nome.toUpperCase();
-    
-    // Inserindo na Tabela 1
-    const linha = document.createElement('tr');
-    linha.innerHTML = `<td>${maiusculo}</td>`;
-    corpoTabela.appendChild(linha);
+    lista.forEach(nome => {
+        const maiusculo = nome.toUpperCase();
+        const linha = document.createElement('tr');
+        linha.innerHTML = `<td>${maiusculo}</td>`;
+        corpoTabela.appendChild(linha);
 
-    // Contando iniciais com 'A'
-    if (maiusculo.startsWith("A")) {
-        contadorA++;
-    }
+        if (maiusculo.startsWith("A")) contadorA++;
+    });
+
+    campoTotal.textContent = contadorA;
+}
+
+// Botão Ordenar
+document.getElementById('btn-ordenar').addEventListener('click', () => {
+    convidados.sort(); // Ordena o array original
+    atualizarTabelas(convidados);
+    logAcao.textContent = "Ordenação";
+    logStatus.textContent = "Concluído";
 });
 
-// Atualizando Tabela 2
-campoTotal.textContent = contadorA;
+// Botão Filtrar
+document.getElementById('btn-filtrar').addEventListener('click', () => {
+    const filtrados = convidados.filter(n => n.toUpperCase().startsWith("A"));
+    atualizarTabelas(filtrados);
+    logAcao.textContent = "Filtro Letra A";
+    logStatus.textContent = "Ativo";
+});
+
+// Inicialização
+atualizarTabelas(convidados);
