@@ -3,50 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Convidados</title>
-    <style>
-        /* CSS INDEXADO */
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; }
-        .lista-container { border: 1px solid #ddd; padding: 20px; border-radius: 8px; width: 300px; }
-        ul { list-style: none; padding: 0; }
-        li { padding: 5px 0; border-bottom: 1px solid #eee; text-transform: uppercase; } /* Uppercase via CSS */
-        .contador { margin-top: 15px; font-weight: bold; color: #2c3e50; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="lista-container">
-        <h1>Convidados</h1>
-        <ul id="lista"></ul>
-        <div id="resultado" class="contador"></div>
+    <div class="container">
+        <h1>Convidados Confirmados</h1>
+        <ul id="lista-convidados">
+            <!-- Os nomes serão inseridos aqui pelo JavaScript -->
+        </ul>
+        <p id="contador-resultado"></p>
     </div>
-
-    <script>
-        // LÓGICA JAVASCRIPT
-        const convidados = ["Ana", "Bruno", "Amanda", "Carlos", "Alice", "David"];
-        const listaUl = document.getElementById('lista');
-        let contadorA = 0;
-
-        // Loop para processar cada nome
-        convidados.forEach(nome => {
-            // 1. Criar o elemento da lista (li)
-            const li = document.createElement('li');
-            
-            // 2. Transformar em MAIÚSCULA via JS e adicionar ao HTML
-            li.textContent = nome.toUpperCase();
-            listaUl.appendChild(li);
-
-            // 3. Contar quantos começam com 'A'
-            if (nome.toUpperCase().startsWith("A")) {
-                contadorA++;
-            }
-        });
-
-        // Exibir o total na tela
-        document.getElementById('resultado').textContent = `Nomes com 'A': ${contadorA}`;
-        
-        // Log no console para verificação
-        console.log("Total de nomes com A:", contadorA);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
 
