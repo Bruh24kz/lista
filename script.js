@@ -1,47 +1,46 @@
-let listaOriginal = ["Ana", "Bruno", "Amanda"];
+let convidados = ["Ana", "Bruno", "Amanda", "Carlos"];
 
-// Função para desenhar as tabelas
-function renderizar(lista) {
-    const corpo = document.getElementById('tabela-nomes');
-    const totalA = document.getElementById('total-a');
+// Função para atualizar as tabelas
+function atualizar(lista, acao = "Atualização") {
+    const corpo = document.getElementById("corpoNomes");
+    const totalA = document.getElementById("totalA");
     corpo.innerHTML = "";
-    let contagem = 0;
+    let contador = 0;
 
-    // LOOP: Imprime em maiúsculo e conta
+    // LOOP: Transforma em maiúscula e preenche a Tabela 1
     lista.forEach(nome => {
-        const maiusc = nome.toUpperCase();
-        corpo.innerHTML += `<tr><td>${maiusc}</td></tr>`;
-        if (maiusc.startsWith("A")) contagem++;
+        const maiusculo = nome.toUpperCase();
+        corpo.innerHTML += `<tr><td>${maiusculo}</td></tr>`;
+        // CONTAGEM: Verifica se começa com A
+        if (maiusculo.startsWith("A")) contador++;
     });
 
-    totalA.textContent = contagem;
+    // Atualiza Tabela 2 e 3
+    totalA.textContent = contador;
+    document.getElementById("logAcao").textContent = acao;
+    document.getElementById("logStatus").textContent = "Sucesso";
 }
 
-// Função para adicionar novo nome
-function adicionarConvidado() {
-    const input = document.getElementById('novo-nome');
-    const nome = input.value.trim();
-
-    if (nome !== "") {
-        listaOriginal.push(nome);
-        renderizar(listaOriginal);
-        input.value = ""; // Limpa campo
-        document.getElementById('log-linha').innerHTML = `<td>Adicionado: ${nome}</td><td>Sucesso</td>`;
+// Botão ADICIONAR
+document.getElementById("btnAdd").onclick = () => {
+    const nome = document.getElementById("inputNome").value.trim();
+    if (nome) {
+        convidados.push(nome);
+        document.getElementById("inputNome").value = "";
+        atualizar(convidados, "Nome Adicionado");
     }
-}
+};
 
-// Função para filtrar
-function filtrarA() {
-    const filtrados = listaOriginal.filter(n => n.toUpperCase().startsWith("A"));
-    renderizar(filtrados);
-    document.getElementById('log-linha').innerHTML = `<td>Filtro aplicado</td><td>Ativo</td>`;
-}
+// Botão FILTRAR
+document.getElementById("btnFiltrar").onclick = () => {
+    const filtrados = convidados.filter(n => n.toUpperCase().startsWith("A"));
+    atualizar(filtrados, "Filtro Letra A");
+};
 
-// Limpar tudo
-function limparTudo() {
-    listaOriginal = [];
-    renderizar(listaOriginal);
-}
+// Botão VER TODOS
+document.getElementById("btnVerTodos").onclick = () => {
+    atualizar(convidados, "Lista Completa");
+};
 
-// Início
-renderizar(listaOriginal);
+// Iniciar sistema
+atualizar(convidados, "Sistema Iniciado");
