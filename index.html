@@ -2,42 +2,39 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Sistema de Convidados</title>
+    <title>Gerenciador de Convidados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Painel de Convidados</h1>
+        <h1>Lista de Convidados</h1>
         
         <div class="input-area">
-            <input type="text" id="inputNome" placeholder="Novo nome...">
+            <input type="text" id="inputNome" placeholder="Digite um nome...">
             <button id="btnAdd">ADICIONAR</button>
         </div>
 
         <div class="acoes">
-            <button id="btnFiltrar">FILTRAR LETRA A</button>
-            <button id="btnVerTodos">VER TODOS</button>
+            <button id="btnFiltrar" class="btn-warning">FILTRAR LETRA A</button>
+            <button id="btnVerTodos" class="btn-info">VER TODOS</button>
         </div>
 
-        <!-- Tabela 1: Nomes -->
         <table>
-            <caption>Tabela 1: Lista de Nomes (MAIÚSCULAS)</caption>
-            <thead><tr><th>NOME</th></tr></thead>
+            <caption>Tabela 1: Convidados</caption>
+            <thead><tr><th>NOME</th><th>EXCLUIR</th></tr></thead>
             <tbody id="corpoNomes"></tbody>
         </table>
 
-        <!-- Tabela 2: Contagem -->
         <table>
             <caption>Tabela 2: Estatística</caption>
             <thead><tr><th>Critério</th><th>Total</th></tr></thead>
-            <tbody><tr><td>Começam com "A"</td><td id="totalA">0</td></tr></tbody>
+            <tbody><tr><td>Iniciam com "A"</td><td id="totalA">0</td></tr></tbody>
         </table>
 
-        <!-- Tabela 3: Logs -->
         <table>
-            <caption>Tabela 3: Sistema</caption>
-            <thead><tr><th>Última Ação</th><th>Status</th></tr></thead>
-            <tbody><tr><td id="logAcao">-</td><td id="logStatus">Aguardando</td></tr></tbody>
+            <caption>Tabela 3: Logs</caption>
+            <thead><tr><th>Ação</th><th>Status</th></tr></thead>
+            <tbody><tr><td id="logAcao">-</td><td id="logStatus">Pronto</td></tr></tbody>
         </table>
     </div>
     <script src="script.js"></script>
