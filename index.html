@@ -2,19 +2,26 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Convidados</title>
+    <title>Convidados com Controles</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <!-- Tabela 1: Lista de Nomes -->
+        <h1>Painel de Controle</h1>
+        
+        <!-- Botões de Ação -->
+        <div class="controles">
+            <button id="btn-ordenar" class="btn-info">Ordenar A-Z</button>
+            <button id="btn-filtrar" class="btn-alerta">Filtrar Letra A</button>
+            <button onclick="location.reload()">Resetar</button>
+        </div>
+
         <table>
-            <caption>Tabela 1: Convidados</caption>
+            <caption>Tabela 1: Lista de Convidados</caption>
             <thead><tr><th>Nome (MAIÚSCULO)</th></tr></thead>
             <tbody id="tabela-nomes"></tbody>
         </table>
 
-        <!-- Tabela 2: Contagem -->
         <table>
             <caption>Tabela 2: Estatística</caption>
             <thead><tr><th>Filtro</th><th>Total</th></tr></thead>
@@ -23,12 +30,11 @@
             </tbody>
         </table>
 
-        <!-- Tabela 3: Sistema -->
         <table>
             <caption>Tabela 3: Logs</caption>
-            <thead><tr><th>Tarefa</th><th>Status</th></tr></thead>
+            <thead><tr><th>Última Ação</th><th>Status</th></tr></thead>
             <tbody>
-                <tr><td>Loop de Processamento</td><td>Concluído</td></tr>
+                <tr><td id="log-acao">Nenhuma</td><td id="log-status">Aguardando</td></tr>
             </tbody>
         </table>
     </div>
