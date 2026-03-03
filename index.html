@@ -2,44 +2,33 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Gestão de Convidados</title>
+    <title>Gestão de Convidados com Filtro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Painel de Convidados</h1>
         
+        <!-- Botão de Filtro -->
+        <button id="btn-filtro">Filtrar apenas nomes com "A"</button>
+
         <table id="tabela-convidados">
-            <thead>
-                <tr><th>Nome do Convidado</th></tr>
-            </thead>
-            <tbody id="corpo-tabela">
-                <!-- Nomes inseridos via JS -->
-            </tbody>
+            <thead><tr><th>Nome do Convidado</th></tr></thead>
+            <tbody id="corpo-tabela"></tbody>
         </table>
 
         <table id="tabela-contagem">
-            <thead>
-                <tr><th>Critério</th><th>Total</th></tr>
-            </thead>
+            <thead><tr><th>Critério</th><th>Total</th></tr></thead>
             <tbody>
-                <tr>
-                    <td>Começam com a Letra "A"</td>
-                    <td id="total-a">0</td>
-                </tr>
+                <tr><td>Começam com a Letra "A"</td><td id="total-a">0</td></tr>
             </tbody>
         </table>
 
         <table id="tabela-status">
-            <thead>
-                <tr><th>Status do Processamento</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>Concluído com Sucesso</td></tr>
-            </tbody>
+            <thead><tr><th>Status</th></tr></thead>
+            <tbody><tr><td id="status-text">Lista Completa</td></tr></tbody>
         </table>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
-
