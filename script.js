@@ -1,46 +1,59 @@
-let convidados = ["Ana", "Bruno", "Amanda", "Carlos"];
+let convidados = ["ANA", "BRUNO", "ALICE"];
 
-// Função para atualizar as tabelas
-function atualizar(lista, acao = "Atualização") {
-    const corpo = document.getElementById("corpoNomes");
-    const totalA = document.getElementById("totalA");
+const corpo = document.getElementById("corpoNomes");
+const totalA = document.getElementById("totalA");
+
+function atualizar(lista, acao = "Lista Atualizada") {
     corpo.innerHTML = "";
     let contador = 0;
 
-    // LOOP: Transforma em maiúscula e preenche a Tabela 1
-    lista.forEach(nome => {
+    // Loop para preencher a Tabela 1
+    lista.forEach((nome, index) => {
         const maiusculo = nome.toUpperCase();
-        corpo.innerHTML += `<tr><td>${maiusculo}</td></tr>`;
-        // CONTAGEM: Verifica se começa com A
+        
+        // Criar linha com botão de excluir
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${maiusculo}</td>
+            <td><button class="btn-del" onclick="remover(${index})">X</button></td>
+        `;
+        corpo.appendChild(tr);
+
         if (maiusculo.startsWith("A")) contador++;
     });
 
-    // Atualiza Tabela 2 e 3
+    // Atualiza as outras tabelas
     totalA.textContent = contador;
     document.getElementById("logAcao").textContent = acao;
-    document.getElementById("logStatus").textContent = "Sucesso";
+    document.getElementById("logStatus").textContent = "OK";
 }
 
-// Botão ADICIONAR
+// Função para ADICIONAR
 document.getElementById("btnAdd").onclick = () => {
-    const nome = document.getElementById("inputNome").value.trim();
-    if (nome) {
-        convidados.push(nome);
-        document.getElementById("inputNome").value = "";
+    const input = document.getElementById("inputNome");
+    if (input.value.trim()) {
+        convidados.push(input.value.trim());
+        input.value = "";
         atualizar(convidados, "Nome Adicionado");
     }
 };
 
-// Botão FILTRAR
+// Função para REMOVER
+function remover(index) {
+    convidados.splice(index, 1);
+    atualizar(convidados, "Nome Removido");
+}
+
+// Filtro Letra A
 document.getElementById("btnFiltrar").onclick = () => {
     const filtrados = convidados.filter(n => n.toUpperCase().startsWith("A"));
-    atualizar(filtrados, "Filtro Letra A");
+    atualizar(filtrados, "Filtro Ativo");
 };
 
-// Botão VER TODOS
+// Ver Todos
 document.getElementById("btnVerTodos").onclick = () => {
-    atualizar(convidados, "Lista Completa");
+    atualizar(convidados, "Ver Todos");
 };
 
-// Iniciar sistema
-atualizar(convidados, "Sistema Iniciado");
+// Inicializar
+atualizar(convidados);
