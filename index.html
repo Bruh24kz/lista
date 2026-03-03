@@ -2,40 +2,41 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Convidados com Controles</title>
+    <title>Sistema de Convidados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Painel de Controle</h1>
+        <h1>Gerenciador de Convidados</h1>
         
-        <!-- Botões de Ação -->
-        <div class="controles">
-            <button id="btn-ordenar" class="btn-info">Ordenar A-Z</button>
-            <button id="btn-filtrar" class="btn-alerta">Filtrar Letra A</button>
-            <button onclick="location.reload()">Resetar</button>
+        <!-- Painel de Botoes -->
+        <div class="botoes">
+            <button onclick="processarLista()" class="btn-primary">Processar Lista</button>
+            <button onclick="filtrarA()" class="btn-filter">Filtrar Letra A</button>
+            <button onclick="resetar()" class="btn-reset">Resetar</button>
         </div>
 
+        <!-- Tabela 1: Lista -->
         <table>
-            <caption>Tabela 1: Lista de Convidados</caption>
-            <thead><tr><th>Nome (MAIÚSCULO)</th></tr></thead>
+            <caption>Tabela 1: Nomes Processados</caption>
+            <thead><tr><th>Convidado</th></tr></thead>
             <tbody id="tabela-nomes"></tbody>
         </table>
 
+        <!-- Tabela 2: Contagem -->
         <table>
             <caption>Tabela 2: Estatística</caption>
-            <thead><tr><th>Filtro</th><th>Total</th></tr></thead>
+            <thead><tr><th>Critério</th><th>Resultado</th></tr></thead>
             <tbody>
-                <tr><td>Iniciam com "A"</td><td id="total-a">0</td></tr>
+                <tr><td>Iniciam com "A"</td><td id="contagem-a">0</td></tr>
             </tbody>
         </table>
 
+        <!-- Tabela 3: Logs -->
         <table>
-            <caption>Tabela 3: Logs</caption>
-            <thead><tr><th>Última Ação</th><th>Status</th></tr></thead>
-            <tbody>
-                <tr><td id="log-acao">Nenhuma</td><td id="log-status">Aguardando</td></tr>
-            </tbody>
+            <caption>Tabela 3: Status</caption>
+            <thead><tr><th>Ação Executada</th><th>Horário</th></tr></thead>
+            <tbody id="tabela-logs"></tbody>
         </table>
     </div>
     <script src="script.js"></script>
