@@ -1,23 +1,23 @@
 const convidados = ["Ana", "Bruno", "Amanda", "Carlos", "Alice", "David", "Arthur"];
 const corpoTabela = document.getElementById('tabela-nomes');
-const celulaContagem = document.getElementById('contagem-a');
+const campoTotal = document.getElementById('total-a');
 
 let contadorA = 0;
 
-// Loop para imprimir na tabela e contar
+// Loop para imprimir nomes e realizar a contagem
 convidados.forEach(nome => {
-    const nomeMaiusculo = nome.toUpperCase();
+    const maiusculo = nome.toUpperCase();
     
-    // Adiciona linha na Tabela 1
+    // Inserindo na Tabela 1
     const linha = document.createElement('tr');
-    linha.innerHTML = `<td>${nomeMaiusculo}</td>`;
+    linha.innerHTML = `<td>${maiusculo}</td>`;
     corpoTabela.appendChild(linha);
 
-    // Verifica se começa com 'A'
-    if (nomeMaiusculo.startsWith("A")) {
+    // Contando iniciais com 'A'
+    if (maiusculo.startsWith("A")) {
         contadorA++;
     }
 });
 
-// Atualiza a Tabela 2 com o resultado
-celulaContagem.textContent = contadorA;
+// Atualizando Tabela 2
+campoTotal.textContent = contadorA;
