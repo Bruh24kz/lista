@@ -1,34 +1,23 @@
-const convidados = ["André", "Beatriz", "Aline", "Caio", "Amanda", "Daniel", "Alberto"];
-const corpoTabela = document.getElementById('corpo-tabela');
-const celulaTotalA = document.getElementById('total-a');
-const btnFiltro = document.getElementById('btn-filtro');
-const statusText = document.getElementById('status-text');
+const convidados = ["Ana", "Bruno", "Amanda", "Carlos", "Alice", "David", "Arthur"];
+const corpoTabela = document.getElementById('tabela-nomes');
+const celulaContagem = document.getElementById('contagem-a');
 
-function renderizarLista(lista) {
-    corpoTabela.innerHTML = ""; // Limpa a tabela
-    let somaA = 0;
+let contadorA = 0;
 
-    lista.forEach(nome => {
-        const nomeMaiusculo = nome.toUpperCase();
-        const linha = document.createElement('tr');
-        linha.innerHTML = `<td>${nomeMaiusculo}</td>`;
-        corpoTabela.appendChild(linha);
-
-        if (nomeMaiusculo.startsWith("A")) somaA++;
-    });
-    celulaTotalA.textContent = somaA;
-}
-
-// Evento de Clique para Filtrar
-btnFiltro.addEventListener('click', () => {
-    const filtrados = convidados.filter(n => n.toUpperCase().startsWith("A"));
-    renderizarLista(filtrados);
-    statusText.textContent = "Filtro Ativo: Letra A";
-    btnFiltro.textContent = "Ver Todos";
+// Loop para imprimir na tabela e contar
+convidados.forEach(nome => {
+    const nomeMaiusculo = nome.toUpperCase();
     
-    // Alternar funcionalidade (Reset)
-    btnFiltro.onclick = () => location.reload(); 
+    // Adiciona linha na Tabela 1
+    const linha = document.createElement('tr');
+    linha.innerHTML = `<td>${nomeMaiusculo}</td>`;
+    corpoTabela.appendChild(linha);
+
+    // Verifica se começa com 'A'
+    if (nomeMaiusculo.startsWith("A")) {
+        contadorA++;
+    }
 });
 
-// Inicialização
-renderizarLista(convidados);
+// Atualiza a Tabela 2 com o resultado
+celulaContagem.textContent = contadorA;
