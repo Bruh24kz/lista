@@ -1,44 +1,47 @@
-const convidadosIniciais = ["Ana", "Bruno", "Amanda", "Carlos", "Alice", "David", "Arthur"];
-let convidadosAtuais = [...convidadosIniciais];
+let listaOriginal = ["Ana", "Bruno", "Amanda"];
 
-// Função Principal de Processamento
-function processarLista(lista = convidadosAtuais) {
-    const tbodyNomes = document.getElementById('tabela-nomes');
-    const campoContagem = document.getElementById('contagem-a');
-    
-    tbodyNomes.innerHTML = ""; // Limpa a tabela
-    let contadorA = 0;
+// Função para desenhar as tabelas
+function renderizar(lista) {
+    const corpo = document.getElementById('tabela-nomes');
+    const totalA = document.getElementById('total-a');
+    corpo.innerHTML = "";
+    let contagem = 0;
 
-    // Loop para imprimir nomes em MAIÚSCULA
+    // LOOP: Imprime em maiúsculo e conta
     lista.forEach(nome => {
-        const nomeMaiusculo = nome.toUpperCase();
-        const linha = `<tr><td>${nomeMaiusculo}</td></tr>`;
-        tbodyNomes.innerHTML += linha;
-
-        if (nomeMaiusculo.startsWith("A")) contadorA++;
+        const maiusc = nome.toUpperCase();
+        corpo.innerHTML += `<tr><td>${maiusc}</td></tr>`;
+        if (maiusc.startsWith("A")) contagem++;
     });
 
-    campoContagem.textContent = contadorA;
-    registrarLog(lista.length === convidadosIniciais.length ? "Lista Completa" : "Filtro Aplicado");
+    totalA.textContent = contagem;
 }
 
-// Função de Filtro
+// Função para adicionar novo nome
+function adicionarConvidado() {
+    const input = document.getElementById('novo-nome');
+    const nome = input.value.trim();
+
+    if (nome !== "") {
+        listaOriginal.push(nome);
+        renderizar(listaOriginal);
+        input.value = ""; // Limpa campo
+        document.getElementById('log-linha').innerHTML = `<td>Adicionado: ${nome}</td><td>Sucesso</td>`;
+    }
+}
+
+// Função para filtrar
 function filtrarA() {
-    const filtrados = convidadosIniciais.filter(n => n.toUpperCase().startsWith("A"));
-    processarLista(filtrados);
+    const filtrados = listaOriginal.filter(n => n.toUpperCase().startsWith("A"));
+    renderizar(filtrados);
+    document.getElementById('log-linha').innerHTML = `<td>Filtro aplicado</td><td>Ativo</td>`;
 }
 
-// Tabela 3: Gerador de Logs
-function registrarLog(acao) {
-    const logBody = document.getElementById('tabela-logs');
-    const agora = new Date().toLocaleTimeString();
-    logBody.innerHTML = `<tr><td>${acao}</td><td>${agora}</td></tr>`;
+// Limpar tudo
+function limparTudo() {
+    listaOriginal = [];
+    renderizar(listaOriginal);
 }
 
-// Reset
-function resetar() {
-    processarLista(convidadosIniciais);
-}
-
-// Inicia ao carregar
-window.onload = () => processarLista(convidadosIniciais);
+// Início
+renderizar(listaOriginal);
