@@ -1,26 +1,34 @@
-// Lista de convidados
 const convidados = ["André", "Beatriz", "Aline", "Caio", "Amanda", "Daniel", "Alberto"];
-
 const corpoTabela = document.getElementById('corpo-tabela');
 const celulaTotalA = document.getElementById('total-a');
+const btnFiltro = document.getElementById('btn-filtro');
+const statusText = document.getElementById('status-text');
 
-let contadorA = 0;
+function renderizarLista(lista) {
+    corpoTabela.innerHTML = ""; // Limpa a tabela
+    let somaA = 0;
 
-// Loop para imprimir nomes e contar iniciais com 'A'
-for (let nome of convidados) {
-    const nomeMaiusculo = nome.toUpperCase();
-    
-    // Inserindo na Tabela 1
-    const linha = document.createElement('tr');
-    linha.innerHTML = `<td>${nomeMaiusculo}</td>`;
-    corpoTabela.appendChild(linha);
+    lista.forEach(nome => {
+        const nomeMaiusculo = nome.toUpperCase();
+        const linha = document.createElement('tr');
+        linha.innerHTML = `<td>${nomeMaiusculo}</td>`;
+        corpoTabela.appendChild(linha);
 
-    // Verificando letra A
-    if (nomeMaiusculo.startsWith("A")) {
-        contadorA++;
-    }
+        if (nomeMaiusculo.startsWith("A")) somaA++;
+    });
+    celulaTotalA.textContent = somaA;
 }
 
-// Atualizando Tabela 2
-celulaTotalA.textContent = contadorA;
+// Evento de Clique para Filtrar
+btnFiltro.addEventListener('click', () => {
+    const filtrados = convidados.filter(n => n.toUpperCase().startsWith("A"));
+    renderizarLista(filtrados);
+    statusText.textContent = "Filtro Ativo: Letra A";
+    btnFiltro.textContent = "Ver Todos";
+    
+    // Alternar funcionalidade (Reset)
+    btnFiltro.onclick = () => location.reload(); 
+});
 
+// Inicialização
+renderizarLista(convidados);
